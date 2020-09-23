@@ -1,0 +1,31 @@
+IRC Parsing Engine Class
+©2007 - Jason James Newland
+
+Purpose:
+       The purpose of this class is to parse the individual
+       events coming from an IRC session and splitting them
+       up so it just raises the relevant events.
+       Saves large parsing subs, especially when it comes to
+       PRIVMSG, as you have to parse private/channel action/text,
+       CTCP's and DCC's.
+
+Usage: (Declarations)
+       Private WithEvents cParser As cIRCParser
+Form/Class load:
+       Set cParser = New cIRCParser
+For/Class unload:
+       Set cParser = Nothing
+
+Method:
+       To parse socket data, get the data into a string, pass that
+       directly to ParseRAWSocketData sVariableName.
+       When parsed, it will raise SocketDataOutput sFirst, sSecond, sThird, sFourth.
+       The reason for this is so an IRC client can override any
+       further parsing for various reasons.
+
+       Just simply pass the output of this event back to the Parse
+       routine of this class.
+
+NOTE:
+       strMe is a string that is set to your current IRC
+       nick name.
